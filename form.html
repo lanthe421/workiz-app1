@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Форма</title>
+</head>
+<body>
+    <h2>Создание сделки</h2>
+    <form id="deal-form">
+        <input type="text" id="deal-title" placeholder="Название сделки" required>
+        <input type="text" id="deal-value" placeholder="Сумма" required>
+        <button type="submit">Создать сделку</button>
+    </form>
+    <script>
+        document.getElementById('deal-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const title = document.getElementById('deal-title').value;
+            const value = document.getElementById('deal-value').value;
+
+            // Отправка данных в родительский документ
+            window.parent.postMessage({ title, value }, '*');
+        });
+    </script>
+</body>
+</html>
