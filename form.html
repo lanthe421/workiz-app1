@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workiz App</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Создать сделку</h1>
+    <form id="deal-form" action="#" method="POST">
+        <div class="form-section">
+            <h2>Client details</h2>
+            <div class="form-group">
+                <input type="text" placeholder="First name" required>
+                <input type="text" placeholder="Last name" required>
+            </div>
+            <input type="tel" placeholder="Phone" required>
+            <input type="email" placeholder="Email (optional)">
+        </div>
+
+        <div class="form-section">
+            <h2>Service location</h2>
+            <input type="text" placeholder="Address" required>
+            <input type="text" placeholder="City" required>
+            <input type="text" placeholder="State" required>
+            <input type="text" placeholder="Zip code" required>
+            <input type="text" placeholder="Area">
+        </div>
+
+        <div class="form-section">
+            <h2>Job details</h2>
+            <div class="form-group">
+                <select required>
+                    <option value="" disabled selected>Job type</option>
+                    <option value="type1">Type 1</option>
+                    <option value="type2">Type 2</option>
+                </select>
+                <select required>
+                    <option value="" disabled selected>Job source</option>
+                    <option value="source1">Source 1</option>
+                    <option value="source2">Source 2</option>
+                </select>
+            </div>
+            <textarea placeholder="Job description (optional)"></textarea>
+        </div>
+
+        <div class="form-section">
+            <h2>Scheduled</h2>
+            <input type="date" required>
+            <input type="time" required>
+            <input type="time" required placeholder="End time">
+            <select required>
+                <option value="" disabled selected>Test select</option>
+                <option value="test1">Test 1</option>
+                <option value="test2">Test 2</option>
+            </select>
+        </div>
+
+        <button type="submit">Создать сделку</button>
+    </form>
+    <script>
+        document.getElementById('deal-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Отменяем стандартное поведение отправки формы
+
+            // Здесь вы можете добавить код для обработки данных формы
+            const formData = new FormData(this);
+
+            // Пример отправки данных на сервер (замените URL на нужный)
+            fetch('your-server-endpoint', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => {
+                if (response.ok) {
+                    alert('Форма успешно отправлена!');
+                    // Можно сбросить форму
+                    this.reset();
+                } else {
+                    alert('Произошла ошибка при отправке формы.');
+                }
+            })
+            .catch(error => {
+                console.error('Ошибка:', error);
+                alert('Произошла ошибка при отправке формы.');
+            });
+        });
+    </script>
+</body>
+</html>
